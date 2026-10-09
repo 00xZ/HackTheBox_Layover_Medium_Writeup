@@ -1,17 +1,14 @@
-=================================================================
-HTB - Layover (Season 12 Pro) - my notes
-=================================================================
+Box starts with RDP login given to you ( contractor / Contractor2026! )
+
+Connected with: xfreerdp /v:10.129.126.71 /u:contractor /p:'Contractor2026' /cert:ignore /dynamic-resolution
+
+sudo su
+This works we have root box, need to move laterally...
 
 started with wifi recon, ran a big combined command to dump nmcli/NetworkManager/wpa_supplicant 
-logs into a file so i could dig through it after:
+see a wlan2 and wlan3. messed with wlan2 for way to long, wlan3 has monitor mode, thats what we need
 
-{ echo "=== connect attempt ==="; nmcli device wifi connect "HTB International WiFi" ifname wlan2; echo "=== nmcli general status ==="; nmcli general status; echo "=== recent NetworkManager logs ==="; journalctl -u NetworkManager -n 50 --no-pager; echo "=== recent wpa_supplicant logs ==="; journalctl -u wpa_supplicant -n 50 --no-pager; echo "=== device status after ==="; nmcli device status; } > /root/recon_output7.txt 2>&1
-cat /root/recon_output7.txt
-
-found a domain in there: http://portal.international.htb/miles nice
-
-wlan2 connect attempt gave me nothing useful. but noticed wlan3 supports monitor mode so 
-pivoted to just sniffing instead of trying to force a connection
+also found a domain in there: http://portal.international.htb/miles nice
 
 ip link set wlan3 down
 iw dev wlan3 set type monitor

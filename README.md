@@ -13,12 +13,13 @@ sudo su
 ```
 This works we have root box, need to move laterally...
 
-started with wifi recon, ran a big combined command to dump nmcli/NetworkManager/wpa_supplicant
-see a wlan2 and wlan3. messed with wlan2 for way to long, wlan3 has monitor mode, thats what we need
-
 When you open web browser itll bring you to a "Internation WiFi Connect" with the theme of a airport
 
 You will automaticlly be directed to this domain : `http://portal.international.htb/miles` nice
+
+started with wifi recon, ran a big combined command to dump nmcli/NetworkManager/wpa_supplicant
+see a wlan2 and wlan3. messed with wlan2 for way to long, wlan3 has monitor mode, thats what we need
+
 
 ```
 ip link set wlan3 down

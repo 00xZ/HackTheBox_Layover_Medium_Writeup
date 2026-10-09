@@ -1,4 +1,4 @@
-# HTB Layover
+# HackTheBox Layover (Medium Difficulty) 
 
 Box starts with RDP login given to you ( contractor / Contractor2026! )
 

